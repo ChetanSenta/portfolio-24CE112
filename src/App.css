@@ -794,6 +794,139 @@ h2 em {
   margin: 14px 0 0;
 }
 
+.repository-section {
+  border-top: 1px solid var(--border);
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(56px, 8vw, 96px);
+}
+
+.repository-heading {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.repository-heading h2 {
+  color: var(--text);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  letter-spacing: -.07em;
+  line-height: .95;
+  margin: 0;
+}
+
+.repository-heading h2 em {
+  color: var(--accent);
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.repository-search {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.repository-search span {
+  color: var(--text-muted);
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.repository-search input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  max-width: 440px;
+  outline: 0;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.repository-search input:focus {
+  border-color: var(--accent);
+}
+
+.repository-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.repository-count,
+.repository-status {
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem;
+}
+
+.repository-status {
+  border: 1px dashed var(--border);
+  margin: 18px 0 0;
+  padding: 24px;
+}
+
+.repository-error {
+  align-items: center;
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.repository-error p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.repository-list {
+  border-top: 1px solid var(--border);
+}
+
+.repository-card {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.repository-card:hover {
+  background: color-mix(in srgb, var(--bg-alt) 55%, transparent);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.repository-card h3 {
+  color: var(--text);
+  font-size: 1.15rem;
+  margin: 0 0 5px;
+}
+
+.repository-card p {
+  color: var(--text-muted);
+  font-size: .86rem;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 65ch;
+}
+
+.repository-meta {
+  align-items: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem;
+  gap: 13px;
+}
+
+.repository-meta span:first-child {
+  color: var(--accent-ink);
+}
+
 .site-footer {
   align-items: flex-start;
   background: var(--invert-bg);
@@ -1137,6 +1270,22 @@ h2 em {
 
   .contact-page__content {
     margin-top: 45px;
+  }
+
+  .repository-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .repository-card {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .repository-meta {
+    flex-wrap: wrap;
   }
 
   .footer-contact {

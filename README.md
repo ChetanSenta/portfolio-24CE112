@@ -13,6 +13,17 @@ The portfolio now demonstrates state management and client-side routing:
 
 `BrowserRouter` is configured in `src/main.jsx`, and navigation uses `NavLink` so routes change without a full page reload. The contact form uses `useState` for the message input and a second `useState` value to toggle contact details.
 
+## Practical 3 additions
+
+The `/projects` route now consumes the public GitHub repositories API:
+
+- Fetches `https://api.github.com/users/ChetanSenta/repos` with `useEffect`.
+- Tracks repository data, loading, and error state with `useState`.
+- Displays a loading message while the request is pending.
+- Displays a retry action when the request fails.
+- Renders repository name, description, language, stars, forks, and URL after success.
+- Includes a search field that filters repositories by name.
+
 ## Component structure
 
 - `src/App.jsx` — stores the portfolio data and composes the page.

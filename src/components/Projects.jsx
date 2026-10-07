@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react'
+
 function ProjectPreview({ type }) {
   if (type === 'cashen') {
     return (
@@ -40,6 +42,45 @@ function ProjectPreview({ type }) {
 }
 
 function Projects({ projectList }) {
+  const [repos, setRepos] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  const [search, setSearch] = useState('')
+
+  const fetchRepositories = useCallback(async (signal) => {
+    try {
+      const response = await fetch('https://api.github.com/users/ChetanSenta/repos?sort=updated&per_page=100', { signal })
+      if (!response.ok) {
+        throw new Error(`GitHub returned ${response.status}`)
+      }
+
+      const data = await response.json()
+      setRepos(data)
+    } catch (requestError) {
+      if (requestError.name !== 'AbortError') {
+        setError('Repositories could not be loaded right now. Please try again.')
+      }
+    } finally {
+      if (!signal.aborted) {
+        setLoading(false)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    fetchRepositories(controller.signal)
+    return () => controller.abort()
+  }, [fetchRepositories])
+
+  const retryFetch = () => {
+    setLoading(true)
+    setError('')
+    fetchRepositories(new AbortController().signal)
+  }
+
+  const filteredRepos = repos.filter((repo) => repo.name.toLowerCase().includes(search.toLowerCase()))
+
   return (
     <section id="projects" className="content-section projects-section">
       <div className="section-heading project-heading">
@@ -72,6 +113,47 @@ function Projects({ projectList }) {
           </article>
         ))}
       </div>
+      <section className="repository-section" aria-labelledby="repository-heading">
+        <div className="repository-heading">
+          <div>
+            <p className="eyebrow">Live from GitHub</p>
+            <h2 id="repository-heading">Open source<br /><em>work.</em></h2>
+          </div>
+          <a className="button button-secondary" href="https://github.com/ChetanSenta?tab=repositories" target="_blank" rel="noreferrer">View GitHub</a>
+        </div>
+        <label className="repository-search">
+          <span>Search repositories</span>
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Filter by name..." />
+        </label>
+        {loading && <p className="repository-status" role="status">Loading repositories...</p>}
+        {error && (
+          <div className="repository-error" role="alert">
+            <p>{error}</p>
+            <button className="details-toggle" type="button" onClick={retryFetch}>Retry</button>
+          </div>
+        )}
+        {!loading && !error && (
+          <>
+            <p className="repository-count">{filteredRepos.length} {filteredRepos.length === 1 ? 'repository' : 'repositories'} found</p>
+            <div className="repository-list">
+              {filteredRepos.map((repo) => (
+                <a className="repository-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}>
+                  <div>
+                    <h3>{repo.name}</h3>
+                    <p>{repo.description || 'No description provided.'}</p>
+                  </div>
+                  <div className="repository-meta">
+                    <span>{repo.language || 'Code'}</span>
+                    <span>★ {repo.stargazers_count}</span>
+                    <span>⑂ {repo.forks_count}</span>
+                  </div>
+                </a>
+              ))}
+              {filteredRepos.length === 0 && <p className="repository-status">No repositories match “{search}”.</p>}
+            </div>
+          </>
+        )}
+      </section>
     </section>
   )
 }
