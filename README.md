@@ -2,6 +2,17 @@
 
 This project is the React and Component Architecture practical for Practical 1. It is a single-page portfolio built with Vite and reusable functional components.
 
+## Practical 2 additions
+
+The portfolio now demonstrates state management and client-side routing:
+
+- `/` — Home page
+- `/projects` — Projects page
+- `/contact` — Controlled contact form with live character count
+- `*` — Custom 404 page
+
+`BrowserRouter` is configured in `src/main.jsx`, and navigation uses `NavLink` so routes change without a full page reload. The contact form uses `useState` for the message input and a second `useState` value to toggle contact details.
+
 ## Component structure
 
 - `src/App.jsx` — stores the portfolio data and composes the page.

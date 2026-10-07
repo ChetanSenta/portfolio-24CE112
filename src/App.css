@@ -913,6 +913,84 @@ h2 em {
   margin: 28px 0 0;
 }
 
+.contact-page {
+  min-height: 620px;
+}
+
+.contact-page .section-heading h1 {
+  color: var(--text);
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+}
+
+.contact-page__content {
+  max-width: 620px;
+}
+
+.contact-page__form {
+  color: var(--text);
+  margin-top: 34px;
+}
+
+.contact-page__form label {
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.contact-page__form input,
+.contact-page__form textarea {
+  border-bottom-color: var(--border);
+  color: var(--text);
+}
+
+.contact-page__form input::placeholder,
+.contact-page__form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.character-count {
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem;
+  margin: 0;
+}
+
+.details-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem;
+  margin-top: 24px;
+  padding: 10px 13px;
+}
+
+.details-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.contact-details a {
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: .82rem;
+}
+
+.contact-details a:hover {
+  color: var(--accent);
+}
+
+.not-found-page {
+  min-height: 620px;
+}
+
 @keyframes pulse {
   70% {
     box-shadow: 0 0 0 6px transparent;
@@ -1049,6 +1127,16 @@ h2 em {
     display: block;
     margin: 0 -22px;
     padding: 55px 22px 35px;
+  }
+
+  .contact-page,
+  .not-found-page {
+    display: block;
+    min-height: 650px;
+  }
+
+  .contact-page__content {
+    margin-top: 45px;
   }
 
   .footer-contact {
