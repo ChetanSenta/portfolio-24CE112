@@ -4,6 +4,15 @@ export const skills = {
   tools: { icon: '✦', items: ['VS Code', 'GitHub', 'GitHub Copilot'] },
 }
 
+// TODO: edit this list when repositories should be excluded from the public grid.
+export const IGNORE_REPOS = [
+  'ChetanSenta',
+  'skills-copilot-codespaces-vscode',
+  'ITUE301-Exam-24CE112-C',
+  '24CE112_CPP-file',
+  'portfolio-24CE112',
+]
+
 export const projects = [
   {
     name: 'Cashen',
@@ -19,7 +28,8 @@ export const projects = [
       'A full-stack ordering platform with JWT authentication, pizza customization, role-based access control, and a real-time order tracking workflow.',
     technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
     impact: 'JWT auth, role-based access, and real-time order tracking for 100+ users.',
-    links: {},
+    // TODO: confirm that Pizzara is the same project before publishing this link.
+    links: { github: 'https://github.com/ChetanSenta/Pizzara' },
   },
   {
     name: 'Competitive Programming',

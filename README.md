@@ -24,6 +24,19 @@ The `/projects` route now consumes the public GitHub repositories API:
 - Renders repository name, description, language, stars, forks, and URL after success.
 - Includes a search field that filters repositories by name.
 
+## Projects page cleanup
+
+The Projects page now uses a shared 4/8/12/16/24/32/48/64px spacing scale,
+compact responsive project rows, and filled visual previews for the featured
+Cashen, Pizza Delivery, and Competitive Programming projects. GitHub
+repositories are displayed as responsive cards with:
+
+- Fork/template/profile-repository filtering and a configurable ignore list.
+- Sorting by latest push date and then star count.
+- Featured badges for repositories already shown above.
+- Skeleton loading, retry/error states, and a GitHub profile fallback link.
+- A ten-minute `sessionStorage` cache, search filtering, and a show-all control.
+
 ## Component structure
 
 - `src/App.jsx` — stores the portfolio data and composes the page.
